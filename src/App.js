@@ -47,10 +47,10 @@ function App() {
     
     const uniqueCategories = new Set()
     
-    const newusers = users.filter((element) => {
-      const isDuplicate = uniqueCategories.has(element.categories)
+    const newusers = users?.filter((element) => {
+      const isDuplicate = uniqueCategories?.has(element.categories)
 
-    uniqueCategories.add(element.categories)
+    uniqueCategories?.add(element?.categories)
 
     if (!isDuplicate) {
       return true
