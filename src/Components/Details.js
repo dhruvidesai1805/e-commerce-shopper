@@ -14,11 +14,11 @@ const Details = ({loadUser1}) => {
   console.log('users',users ,sizes,colors)
   const loadUser = () => {
     axios
-      .get(`http://localhost:3002/users/${id}`)
+      .get(`process.env.REACT_APP_API_URL/users/${id}`)
       .then((res) => {
         setUsers(res?.data)
         
-        axios.get(`http://localhost:3002/users`).then((res1) => {
+        axios.get(`process.env.REACT_APP_API_URL/users`).then((res1) => {
           const result = res1.data.filter((item) => {
             console.log('item', item.categories)
 
@@ -81,7 +81,7 @@ const Details = ({loadUser1}) => {
           })
 
           axios
-            .put(`http://localhost:3002/users/${id}`, value)
+            .put(`process.env.REACT_APP_API_URL/users/${id}`, value)
             .then((res) => {
               console.log(res,"console_ress")
               toast.success('added to cart')
@@ -97,7 +97,7 @@ const Details = ({loadUser1}) => {
       } else {
         value.cart = CartData
         axios
-          .put(`http://localhost:3002/users/${id}`, value)
+          .put(`process.env.REACT_APP_API_URL/users/${id}`, value)
           .then((res) => {
             console.log(res)
             toast.success('added to cart')

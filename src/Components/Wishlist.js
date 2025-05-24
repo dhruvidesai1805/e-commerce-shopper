@@ -9,7 +9,7 @@ const Wishlist = ({wishlist}) => {
 
   const loadUser = () => {
     axios
-      .get(`http://localhost:3002/users`)
+      .get(`process.env.REACT_APP_API_URL/users`)
       .then((res) => {
         setUsers(res?.data)
         const newArray = res?.data.filter((item) => {
@@ -32,7 +32,7 @@ const Wishlist = ({wishlist}) => {
     console.log('delete', value)
     value.wishlist = false
     axios
-      .put(`http://localhost:3002/users/${value.id}`, value)
+      .put(`process.env.REACT_APP_API_URL/users/${value.id}`, value)
       .then((res) => {
         console.log('res', res)
         toast.error('your wishlist is deleted')
