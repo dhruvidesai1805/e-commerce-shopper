@@ -18,7 +18,7 @@ function App() {
 
   const loadUser1 = () => {
     axios
-      .get(`process.env.REACT_APP_API_URL/users`)
+      .get(`${process.env.REACT_APP_API_URL}/users`)
       .then((res) => {
         setUsers(res?.data)
         const newArray = res?.data.filter((item) => {
@@ -60,7 +60,7 @@ function App() {
   
   const wishlist = () => {
     axios
-    .get(`process.env.REACT_APP_API_URL/users`)
+    .get(`${process.env.REACT_APP_API_URL}/users`)
     .then((res) => {
       setUsers(res?.data)
       const newArray = res?.data.filter((item) => {

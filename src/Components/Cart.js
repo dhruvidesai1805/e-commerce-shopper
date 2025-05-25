@@ -10,7 +10,7 @@ const Cart = ({loadUser1}) => {
   const [price , setPrice] = useState('')
   const loadUser = (id) => {
     axios
-      .get(`process.env.REACT_APP_API_URL/users/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/users/${id}`)
       .then((res) => {
         console.log(res,"responseee")
         console.log("res",res.data)

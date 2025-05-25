@@ -24,7 +24,7 @@ const Home = ({ wishlist }) => {
 
   const loadUsers = () => {
     axios
-      .get(`process.env.REACT_APP_API_URL/users?_page`)
+      .get(`${process.env.REACT_APP_API_URL}/users?_page`)
       .then((res) => {
         setUsers(res?.data)
       })
@@ -59,7 +59,7 @@ const Home = ({ wishlist }) => {
     } else {
       value.wishlist = true
       axios
-        .put(`process.env.REACT_APP_API_URL/users/${value.id}`, value)
+        .put(`${process.env.REACT_APP_API_URL}/users/${value.id}`, value)
         .then((res) => {
           console.log('res', res)
           toast.success('item added to your wishlist')

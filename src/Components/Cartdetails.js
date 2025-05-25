@@ -23,7 +23,7 @@ const Cartdetails = ({ item, item2, loadUser ,loadUser1}) => {
 
     item2.quantity = qty
     axios
-      .put(`process.env.REACT_APP_API_URL/users/${item.id}`, item)
+      .put(`${process.env.REACT_APP_API_URL}/users/${item.id}`, item)
       .then((res) => {
         loadUser()
         
@@ -41,7 +41,7 @@ const Cartdetails = ({ item, item2, loadUser ,loadUser1}) => {
     console.log('dfdsf', del_data)
     value.cart = del_data
     axios
-      .put(`process.env.REACT_APP_API_URL/users/${value.id}`, value)
+      .put(`${process.env.REACT_APP_API_URL}/users/${value.id}`, value)
       .then((res) => {
         loadUser1()
         loadUser()
