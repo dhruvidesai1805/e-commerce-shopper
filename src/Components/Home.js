@@ -24,7 +24,7 @@ const Home = ({ wishlist }) => {
 
   const loadUsers = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users?_page`)
+      .get(`${process.env.REACT_APP_API_URL}/products?_page`)
       .then((res) => {
         setUsers(res?.data)
       })
@@ -35,7 +35,7 @@ const Home = ({ wishlist }) => {
 
   const uniqueCategories = new Set()
 
-  const newusers = users.filter((element) => {
+  const newusers = users?.filter((element) => {
     const isDuplicate = uniqueCategories.has(element.categories)
 
     uniqueCategories.add(element.categories)
@@ -59,7 +59,7 @@ const Home = ({ wishlist }) => {
     } else {
       value.wishlist = true
       axios
-        .put(`${process.env.REACT_APP_API_URL}/users/${value.id}`, value)
+        .put(`${process.env.REACT_APP_API_URL}/products/${value._id}`, value)
         .then((res) => {
           console.log('res', res)
           toast.success('item added to your wishlist')
@@ -276,7 +276,7 @@ const Home = ({ wishlist }) => {
                     </div>
                     <div className='card-footer d-flex justify-content-between bg-light border'>
                       <Link
-                        to={`/Details/${item.id}`}
+                        to={`/Details/${item._id}`}
                         className='btn btn-sm text-dark p-0'
                       >
                         <i className='fas fa-eye text-primary mr-1' />

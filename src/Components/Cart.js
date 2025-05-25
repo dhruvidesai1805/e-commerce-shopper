@@ -9,8 +9,9 @@ const Cart = ({loadUser1}) => {
   console.log(total,"totla")
   const [price , setPrice] = useState('')
   const loadUser = (id) => {
+    
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/products`)
       .then((res) => {
         console.log(res,"responseee")
         console.log("res",res.data)
@@ -19,16 +20,18 @@ const Cart = ({loadUser1}) => {
           return item.cart.length > 0
         })
 
-        console.log(newArray,"newArray")
         setUsers(newArray)
-        let total1 = []
-        newArray.map((item2) => {
-          item2.cart.map((itm)=>{
-            total1.push(Number(itm.quantity) * Number(item2.price))
-          })
-        })
-        total1.length > 0 && setTotal(total1)
-        setPrice(res.price);
+        let total1 = 0;
+        
+             newArray.forEach((item2) => {
+              item2.cart.forEach((itm) => {
+          total1 += Number(itm.quantity) * Number(item2.price);
+        });
+      });
+
+      setTotal(total1); // This will now be the actual numeric total
+      setPrice(res.price);
+    
       })
       .catch((err) => {
         console.log(err)
@@ -126,10 +129,7 @@ const Cart = ({loadUser1}) => {
                 <div className='d-flex justify-content-between mt-2'>
                   <h5 className='font-weight-bold'>Total</h5>
                   <h5 className='font-weight-bold'>
-                    { total.length > 0 && total.reduce(
-                      (total, item) => total + item,
-                      0
-                    )}
+                    {total}
                   </h5>
                 </div>
                 <button className='btn btn-block btn-primary my-3 py-3'>

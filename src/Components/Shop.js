@@ -52,13 +52,13 @@ const Shop = ({ wishlist, headername  }) => {
 
   const loadUsers = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users?_page`)
-      .then((res) => {
+      .get(`${process.env.REACT_APP_API_URL}/products?_page`)
+      .then((res) => {        
         setAllProduct(res.data)
         if (categories === undefined) {
           setUsers(res?.data)
         } else {
-          const results = res.data.filter((item) => {
+          const results = res?.data?.filter((item) => {
             return item.categories === categories
           })
           setUsers(results)
@@ -79,7 +79,7 @@ const Shop = ({ wishlist, headername  }) => {
     } else {
       value.wishlist = true
       axios
-        .put(`${process.env.REACT_APP_API_URL}/users/${value.id}`, value)
+        .put(`${process.env.REACT_APP_API_URL}/products/${value._id}`, value)
         .then((res) => {
           console.log('res', res)
           toast.success('item added to your wishlist')
@@ -533,7 +533,7 @@ const Shop = ({ wishlist, headername  }) => {
                       </div>
                       <div className='card-footer d-flex justify-content-between bg-light border'>
                         <Link
-                          to={`/Details/${item.id}`}
+                          to={`/Details/${item._id}`}
                           className='btn btn-sm text-dark p-0'
                         >
                           <i className='fas fa-eye text-primary mr-1' />

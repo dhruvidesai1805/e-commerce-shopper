@@ -14,11 +14,11 @@ const Details = ({loadUser1}) => {
   console.log('users',users ,sizes,colors)
   const loadUser = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/products/${id}`)
       .then((res) => {
         setUsers(res?.data)
         
-        axios.get(`${process.env.REACT_APP_API_URL}/users`).then((res1) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/products`).then((res1) => {
           const result = res1.data.filter((item) => {
             console.log('item', item.categories)
 
@@ -81,7 +81,7 @@ const Details = ({loadUser1}) => {
           })
 
           axios
-            .put(`${process.env.REACT_APP_API_URL}/users/${id}`, value)
+            .put(`${process.env.REACT_APP_API_URL}/products/${id}`, value)
             .then((res) => {
               console.log(res,"console_ress")
               toast.success('added to cart')
@@ -97,7 +97,7 @@ const Details = ({loadUser1}) => {
       } else {
         value.cart = CartData
         axios
-          .put(`${process.env.REACT_APP_API_URL}/users/${id}`, value)
+          .put(`${process.env.REACT_APP_API_URL}/products/${id}`, value)
           .then((res) => {
             console.log(res)
             toast.success('added to cart')
@@ -379,7 +379,7 @@ const Details = ({loadUser1}) => {
                         </div>
                         <div className='card-footer d-flex justify-content-between bg-light border'>
                           <Link
-                            to={`/Details/${item.id}`}
+                            to={`/Details/${item._id}`}
                             className='btn btn-sm text-dark p-0'
                           >
                             <i className='fas fa-eye text-primary mr-1' />
